@@ -111,15 +111,15 @@ then
     
     if [ $encontrar -gt 0 ];then
         echo "========================================================================="
-        Print_Style "El texto $encontrar existe" "$GREEN"
+        Print_Style "El texto existe" "$GREEN"
         echo "========================================================================="
         sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
     else
         echo "========================================================================="
-        Print_Style "El texto $encontrar no existe" "$RED"
+        Print_Style "El texto no existe" "$RED"
         echo "========================================================================="
         sudo sed -i '$a eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"' archivo.txt
-        Print_Style "El fichero $FILE fue agregado al final del archivo .bashrc" "$YELLOW"
+        Print_Style "El texto fue agregado al final del archivo .bashrc" "$YELLOW"
     fi
 
 #   sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
@@ -128,4 +128,3 @@ else
   Print_Style "El fichero $FILE no existe" "$RED"
   echo "========================================================================="
 fi
-
