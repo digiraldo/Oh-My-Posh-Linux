@@ -103,7 +103,8 @@ FILE=~/.bashrc
 if [ -f $FILE ]
 then
    echo "El fichero $FILE existe"
-     encontrar=`cat $FILE | grep eval | wc -l`
+     cd ~
+     encontrar=`cat .bashrc | grep eval | wc -l`
       
      if [ $encontrar -gt 0 ];then
          echo "Encontrado"
