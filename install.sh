@@ -71,7 +71,6 @@ function read_with_prompt {
   Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
   sleep 2s
 
-sudo apt install unzip
 
 echo "========================================================================="
 cd ~
@@ -83,7 +82,9 @@ echo "========================================================================="
 Print_Style "Asignando permisos de ejecucion" "$YELLOW"
 sleep 2s
 cd ~
-sudo chmod +x /usr/local/bin/oh-my-posh
+#sudo chmod +x /usr/local/bin/oh-my-posh
+sudo chmod +x $DirName/bin/oh-my-posh
+
 
 echo "========================================================================="
 echo "======================= CONFIGURANDO TEMAS ================================="
@@ -103,6 +104,7 @@ sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/
 echo "========================================================================="
 Print_Style "Descomprimiendo" "$CYAN"
 sleep 2s
+sudo apt install unzip
 cd ~
 sudo unzip themes.zip -d ~/.poshthemes
 
@@ -115,7 +117,7 @@ sudo chmod u+rw,g+r ~/.poshthemes/*.json
 echo "========================================================================="
 Print_Style "Eliminando archivo comprimido" "$GREEN"
 sleep 2s
-sudo rm themes.zip
+sudo rm ´rf themes.zip
 
 echo "========================================================================="
 echo "========================== ACTIVAR ======================================"
