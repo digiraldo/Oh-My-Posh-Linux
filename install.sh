@@ -113,7 +113,7 @@ then
         echo "========================================================================="
         Print_Style "El texto existe" "$GREEN"
         echo "========================================================================="
-        sudo sed -i 's/^eval .*$/eval \"\$\(oh-my-posh --init --shell bash --config \~\/.poshthemes\/jandedobbeleer.omp.json)"/' ~/.bashrc
+        sudo sed -i 's\/\^eval \.\*\$/eval \"\$\(oh-my-posh --init --shell bash --config \~\/.poshthemes\/jandedobbeleer.omp.json)"/' ~/.bashrc
     else
         echo "========================================================================="
         Print_Style "El texto no existe" "$RED"
