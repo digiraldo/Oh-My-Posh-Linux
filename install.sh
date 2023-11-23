@@ -50,8 +50,8 @@ function read_with_prompt {
   DirName=$(readlink -e ~)
   UserName=$(whoami)
 
-Print_Style "DirName" "$YELLOW"
-Print_Style "UserName" "$MAGENTA"
+Print_Style "$DirName" "$YELLOW"
+Print_Style "$UserName" "$MAGENTA"
   
 
   Print_Style "Fuente de Color BLACK" "$BLACK"
