@@ -82,8 +82,8 @@ echo "========================================================================="
 Print_Style "Asignando permisos de ejecucion" "$YELLOW"
 sleep 2s
 cd ~
-#sudo chmod +x /usr/local/bin/oh-my-posh
-sudo chmod +x $DirName/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+#sudo chmod +x $DirName/bin/oh-my-posh
 
 
 echo "========================================================================="
@@ -117,7 +117,7 @@ sudo chmod u+rw,g+r ~/.poshthemes/*.json
 echo "========================================================================="
 Print_Style "Eliminando archivo comprimido" "$GREEN"
 sleep 2s
-sudo rm ´rf themes.zip
+sudo rm -rf themes.zip
 
 echo "========================================================================="
 echo "========================== ACTIVAR ======================================"
@@ -137,5 +137,7 @@ sudo echo "source .oh-my-post-init.sh" >> .bashrc
 echo "========================================================================="
 Print_Style "Inicializar el prompt" "$MAGENTA"
 sleep 2s
-# sudo source ./oh-my-post-init.sh
+sudo source .oh-my-post-init.sh
+source .bashrc
 /bin/bash oh-my-post-init.sh
+sudo ./oh-my-post-init.sh
