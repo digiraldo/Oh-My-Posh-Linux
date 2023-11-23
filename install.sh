@@ -52,7 +52,7 @@ function read_with_prompt {
 
   Print_Style "$DirName" "$YELLOW"
   Print_Style "$UserName" "$MAGENTA"
-  sleep 4s
+  sleep 2s
 
 
   Print_Style "Fuente de Color BLACK" "$BLACK"
@@ -69,7 +69,7 @@ function read_with_prompt {
   Print_Style "Fuente de Color BLINK" "$BLINK"
   Print_Style "Fuente de Color REVERSE" "$REVERSE"
   Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
-  sleep 6s
+  sleep 2s
 
 echo "========================================================================="
 
