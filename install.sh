@@ -80,26 +80,31 @@ sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/
 echo "========================================================================="
 Print_Style "Asignando permisos de ejecucion" "$YELLOW"
 sleep 2s
+cd ~
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 echo "======================= CONFIGURANDO TEMAS ================================="
 Print_Style "Asignando permisos" "$BLUE"
 sleep 2s
+cd ~
 sudo mkdir ~/.poshthemes
 
 echo "========================================================================="
 Print_Style "Descargando Temas" "$MAGENTA"
 sleep 1s
+cd ~
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
 
 echo "========================================================================="
-Print_Style "Descomprimiendo..." "$CYAN"
-sleep 1s
+Print_Style "Descomprimiendo" "$CYAN"
+sleep 2s
+cd ~
 sudo unzip themes.zip -d ~/.poshthemes
 
 echo "========================================================================="
 Print_Style "Asignando permisos" "$RED"
-sleep 1s
+sleep 2s
+cd ~
 sudo chmod u+rw,g+r ~/.poshthemes/*.json
 
 echo "========================================================================="
@@ -110,11 +115,13 @@ sudo rm themes.zip
 echo "========================== ACTIVAR ======================================"
 Print_Style "Creaar script de inicio para BASH" "$YELLOW"
 sleep 2s
+cd ~
 sudo oh-my-posh init bash --config .poshthemes/jandedobbeleer.omp.json > .oh-my-post-init.sh
 
 echo "========================================================================="
 Print_Style "Enlazar el script en .bashrc" "$BLUE"
 sleep 2s
+cd ~
 sudo echo "source .oh-my-post-init.sh" >> .bashrc
 
 echo "========================================================================="
