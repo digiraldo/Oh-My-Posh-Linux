@@ -110,7 +110,7 @@ sudo rm themes.zip
 echo "========================== ACTIVAR ======================================"
 Print_Style "Creaar script de inicio para BASH" "$NORMAL"
 sleep 1s
-sudo oh-my-posh init bash --config .poshthemes/montys.omp.json > .oh-my-post-init.sh
+sudo oh-my-posh init bash --config .poshthemes/jandedobbeleer.omp.json > .oh-my-post-init.sh
 
 echo "========================================================================="
 Print_Style "Enlazar el script en .bashrc" "$BLINK"
@@ -120,4 +120,4 @@ sudo echo "source .oh-my-post-init.sh" >> .bashrc
 echo "========================================================================="
 Print_Style "Inicializar el prompt" "$RED"
 sleep 1s
-sudo source .bashrc
+sudo source .oh-my-post-init.sh
