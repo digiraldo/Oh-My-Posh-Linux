@@ -105,12 +105,12 @@ then
   echo "El fichero $FILE existe"
 
 
-#   sudo sed -i 's/^eval .*$/el contenido de la línea ha sido reemplazado/' ~/.bashrc
+#   sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
 else
   echo "El fichero $FILE no existe"
 fi
 
-encontrar=`cat .bashrc | grep eval | wc -l`
+encontrar=`sudo cat $FILE | sudo grep eval | wc -l`
   
   if [ $encontrar -gt 0 ];then
     echo "Encontrado"
