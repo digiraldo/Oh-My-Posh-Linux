@@ -1,9 +1,5 @@
 #!/bin/bash
 # 
-# Instrucciones: https://github.com/LomotHo/minecraft-bedrock
-# Instrucciones en Español: https://gorobeta.blogspot.com
-# Repositorio de GitHub: https://github.com/digiraldo/Minecraft-BE-Server-Panel-Admin-Web
-# Crear Usuario https://noviello.it/es/como-crear-un-usuario-de-sudo-en-linux-debian/
 
 # Colores del terminal
 BLACK=$(tput setaf 0)
@@ -53,6 +49,10 @@ function read_with_prompt {
 
   DirName=$(readlink -e ~)
   UserName=$(whoami)
+
+Print_Style "DirName" "$YELLOW"
+Print_Style "UserName" "$MAGENTA"
+  
 
   Print_Style "Fuente de Color BLACK" "$BLACK"
   Print_Style "Fuente de Color RED" "$RED"
