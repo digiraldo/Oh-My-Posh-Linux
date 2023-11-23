@@ -94,6 +94,8 @@ Print_Style "Asignando permisos" "$BLUE"
 sleep 2s
 cd ~
 sudo mkdir ~/.poshthemes
+Print_Style "seleccionamos fuente FiraCode o Meslo" "$REVERSE"
+sudo oh-my-posh font install
 
 echo "========================================================================="
 Print_Style "Descargando Temas" "$MAGENTA"
