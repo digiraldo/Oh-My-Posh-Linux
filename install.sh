@@ -106,22 +106,22 @@ then
   Print_Style "El fichero $FILE existe" "$GREEN"
   echo "========================================================================="
 
-    encontrar=`sudo cat .bashrc | sudo grep eval | wc -l`
+  encontrar=`sudo cat ~/.bashrc | sudo grep eval | wc -l`
     
-    if [ $encontrar -gt 0 ];then
-        echo "========================================================================="
-        Print_Style "El texto existe" "$GREEN"
-        echo "========================================================================="
-        sudo sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
-    else
-        echo "========================================================================="
-        Print_Style "El texto no existe" "$RED"
-        echo "========================================================================="
-        sudo sed -i 'eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"' ~/.bashrc
-        echo "========================================================================="
-        Print_Style "El texto fue agregado al final del archivo .bashrc" "$YELLOW"
-        echo "========================================================================="
-    fi
+  if [ $encontrar -gt 0 ];then
+    echo "========================================================================="
+    Print_Style "El texto existe" "$GREEN"
+    echo "========================================================================="
+    sudo sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
+  else
+    echo "========================================================================="
+    Print_Style "El texto no existe" "$RED"
+    echo "========================================================================="
+    sudo sed -i 'eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"' ~/.bashrc
+    echo "========================================================================="
+    Print_Style "El texto fue agregado al final del archivo .bashrc" "$YELLOW"
+    echo "========================================================================="
+  fi
 
 #   sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
 else
