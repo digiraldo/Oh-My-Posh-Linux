@@ -68,7 +68,7 @@ function read_with_prompt {
   Print_Style "Fuente de Color BLINK" "$BLINK"
   Print_Style "Fuente de Color REVERSE" "$REVERSE"
   Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
-slepp 8s 
+  sleep 6s
 
 echo "========================================================================="
 
