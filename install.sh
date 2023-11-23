@@ -104,14 +104,16 @@ if [ -f $FILE ]
 then
   echo "El fichero $FILE existe"
 
-    encontrar=`cat .bashrc | grep eval | wc -l`
-      
-      if [ $encontrar -gt 0 ];then
-        echo "Encontrado"
-      else
-        echo "NO encontrado"
-      fi
+
 #   sudo sed -i 's/^eval .*$/el contenido de la línea ha sido reemplazado/' ~/.bashrc
 else
   echo "El fichero $FILE no existe"
 fi
+
+encontrar=`cat .bashrc | grep eval | wc -l`
+  
+  if [ $encontrar -gt 0 ];then
+    echo "Encontrado"
+  else
+    echo "NO encontrado"
+  fi
