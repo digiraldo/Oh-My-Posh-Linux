@@ -120,4 +120,5 @@ sudo echo "source .oh-my-post-init.sh" >> .bashrc
 echo "========================================================================="
 Print_Style "Inicializar el prompt" "$MAGENTA"
 sleep 2s
-sudo source ./oh-my-post-init.sh
+# sudo source ./oh-my-post-init.sh
+/bin/bash oh-my-post-init.sh
