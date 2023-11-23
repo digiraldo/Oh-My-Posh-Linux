@@ -71,6 +71,8 @@ function read_with_prompt {
   Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
   sleep 2s
 
+sudo apt install unzip
+
 echo "========================================================================="
 cd ~
 Print_Style "Descargando oh-my-posh" "$GREEN"
@@ -83,7 +85,10 @@ sleep 2s
 cd ~
 sudo chmod +x /usr/local/bin/oh-my-posh
 
+echo "========================================================================="
 echo "======================= CONFIGURANDO TEMAS ================================="
+echo "========================================================================="
+sleep 2s
 Print_Style "Asignando permisos" "$BLUE"
 sleep 2s
 cd ~
@@ -112,7 +117,10 @@ Print_Style "Eliminando archivo comprimido" "$GREEN"
 sleep 2s
 sudo rm themes.zip
 
+echo "========================================================================="
 echo "========================== ACTIVAR ======================================"
+echo "========================================================================="
+sleep 2s
 Print_Style "Creaar script de inicio para BASH" "$YELLOW"
 sleep 2s
 cd ~
