@@ -74,17 +74,17 @@ function read_with_prompt {
 echo "========================================================================="
 cd ~
 Print_Style "Descargando oh-my-posh" "$GREEN"
-sleep 1s
+sleep 2s
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 
 echo "========================================================================="
 Print_Style "Asignando permisos de ejecucion" "$YELLOW"
-sleep 1s
+sleep 2s
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 echo "======================= CONFIGURANDO TEMAS ================================="
 Print_Style "Asignando permisos" "$BLUE"
-sleep 1s
+sleep 2s
 sudo mkdir ~/.poshthemes
 
 echo "========================================================================="
@@ -98,26 +98,26 @@ sleep 1s
 sudo unzip themes.zip -d ~/.poshthemes
 
 echo "========================================================================="
-Print_Style "Asignando permisos" "$WHITE"
+Print_Style "Asignando permisos" "$RED"
 sleep 1s
 sudo chmod u+rw,g+r ~/.poshthemes/*.json
 
 echo "========================================================================="
-Print_Style "Eliminando archivo comprimido" "$BRIGHT"
-sleep 1s
+Print_Style "Eliminando archivo comprimido" "$GREEN"
+sleep 2s
 sudo rm themes.zip
 
 echo "========================== ACTIVAR ======================================"
-Print_Style "Creaar script de inicio para BASH" "$NORMAL"
-sleep 1s
+Print_Style "Creaar script de inicio para BASH" "$YELLOW"
+sleep 2s
 sudo oh-my-posh init bash --config .poshthemes/jandedobbeleer.omp.json > .oh-my-post-init.sh
 
 echo "========================================================================="
-Print_Style "Enlazar el script en .bashrc" "$BLINK"
-sleep 1s
+Print_Style "Enlazar el script en .bashrc" "$BLUE"
+sleep 2s
 sudo echo "source .oh-my-post-init.sh" >> .bashrc
 
 echo "========================================================================="
-Print_Style "Inicializar el prompt" "$RED"
-sleep 1s
+Print_Style "Inicializar el prompt" "$MAGENTA"
+sleep 2s
 sudo source .oh-my-post-init.sh
