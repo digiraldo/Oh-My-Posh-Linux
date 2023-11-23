@@ -52,7 +52,7 @@ function read_with_prompt {
 
   Print_Style "$DirName" "$YELLOW"
   Print_Style "$UserName" "$MAGENTA"
-  sleep 2s
+  sleep 1s
 
 
   Print_Style "Fuente de Color BLACK" "$BLACK"
