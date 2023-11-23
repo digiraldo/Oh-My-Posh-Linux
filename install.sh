@@ -72,60 +72,52 @@ function read_with_prompt {
   sleep 2s
 
 echo "========================================================================="
-
 cd ~
-
+Print_Style "Descargando oh-my-posh" "$GREEN"
+sleep 1s
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+
+echo "========================================================================="
+Print_Style "Asignando permisos de ejecucion" "$YELLOW"
+sleep 1s
 sudo chmod +x /usr/local/bin/oh-my-posh
 
-sudo unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
-sudo chmod u+rw ~/.poshthemes/*.json
-sudo rm ~/.poshthemes/themes.zip
-
-echo "========================================================================="
-
+echo "======================= CONFIGURANDO TEMAS ================================="
+Print_Style "Asignando permisos" "$BLUE"
+sleep 1s
 sudo mkdir ~/.poshthemes
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
-sudo unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
-sudo chmod u+rw ~/.poshthemes/*.json
-sudo rm ~/.poshthemes/themes.zip
-
-cd ~
-sudo mkdir .fonts
-sudo unzip ~/Meslo.zip -d ~/.fonts/Meslo
-sudo fc-cache -fv
 
 echo "========================================================================="
+Print_Style "Descargando Temas" "$MAGENTA"
+sleep 1s
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
 
-FILE=~/.bashrc
+echo "========================================================================="
+Print_Style "Descomprimiendo..." "$CYAN"
+sleep 1s
+sudo unzip themes.zip -d ~/.poshthemes
 
+echo "========================================================================="
+Print_Style "Asignando permisos" "$WHITE"
+sleep 1s
+sudo chmod u+rw,g+r ~/.poshthemes/*.json
 
-if [ -f $FILE ]
-then
-  echo "========================================================================="
-  Print_Style "El fichero $FILE existe" "$GREEN"
-  echo "========================================================================="
+echo "========================================================================="
+Print_Style "Eliminando archivo comprimido" "$BRIGHT"
+sleep 1s
+sudo rm themes.zip
 
-  encontrar=`sudo cat ~/.bashrc | sudo grep eval | wc -l`
-    
-  if [ $encontrar -gt 0 ];then
-    echo "========================================================================="
-    Print_Style "El texto existe" "$GREEN"
-    echo "========================================================================="
-    sudo sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
-  else
-    echo "========================================================================="
-    Print_Style "El texto no existe" "$RED"
-    echo "========================================================================="
-    sudo sed -i 'eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"' ~/.bashrc
-    echo "========================================================================="
-    Print_Style "El texto fue agregado al final del archivo .bashrc" "$YELLOW"
-    echo "========================================================================="
-  fi
+echo "========================== ACTIVAR ======================================"
+Print_Style "Creaar script de inicio para BASH" "$NORMAL"
+sleep 1s
+sudo oh-my-posh init bash --config .poshthemes/montys.omp.json > .oh-my-post-init.sh
 
-#   sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
-else
-  echo "========================================================================="
-  Print_Style "El fichero $FILE no existe" "$RED"
-  echo "========================================================================="
-fi
+echo "========================================================================="
+Print_Style "Enlazar el script en .bashrc" "$BLINK"
+sleep 1s
+sudo echo "source .oh-my-post-init.sh" >> .bashrc
+
+echo "========================================================================="
+Print_Style "Inicializar el prompt" "$RED"
+sleep 1s
+sudo source .bashrc
