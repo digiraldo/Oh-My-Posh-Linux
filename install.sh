@@ -92,8 +92,7 @@ sudo rm ~/.poshthemes/themes.zip
 
 cd ~
 sudo mkdir .fonts
-sudo mkdir Descargas
-sudo unzip ~/Descargas/Meslo.zip -d ~/.fonts/Meslo
+sudo unzip ~/Meslo.zip -d ~/.fonts/Meslo
 sudo fc-cache -fv
 
 echo "========================================================================="
