@@ -137,8 +137,10 @@ cd ~
 sudo echo "source .oh-my-post-init.sh" >> .bashrc
 
 echo "========================================================================="
-Print_Style "Inicializar el prompt" "$MAGENTA"
+Print_Style "Inicializar el prompt con:" "$MAGENTA"
 sleep 2s
 source .oh-my-post-init.sh
 sleep 4s
 source .bashrc
+Print_Style "source .bashrc" "$REVERSE"
+Print_Style "source .oh-my-post-init.sh" "$REVERSE"
