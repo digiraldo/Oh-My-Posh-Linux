@@ -68,7 +68,6 @@ function read_with_prompt {
   Print_Style "Fuente de Color BLINK" "$BLINK"
   Print_Style "Fuente de Color REVERSE" "$REVERSE"
   Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
-#  sleep 6s
 
 echo "========================================================================="
 
@@ -102,7 +101,8 @@ FILE=~/.bashrc
 
 if [ -f $FILE ]
 then
-  echo "El fichero $FILE existe"
+  echo "========================================================================="
+  Print_Style "El fichero $FILE existe" "$GREEN"
 
 
 #   sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
