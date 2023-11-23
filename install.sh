@@ -52,6 +52,7 @@ function read_with_prompt {
 
   Print_Style "$DirName" "$YELLOW"
   Print_Style "$UserName" "$MAGENTA"
+  sleep 4s
 
 
   Print_Style "Fuente de Color BLACK" "$BLACK"
@@ -68,6 +69,7 @@ function read_with_prompt {
   Print_Style "Fuente de Color BLINK" "$BLINK"
   Print_Style "Fuente de Color REVERSE" "$REVERSE"
   Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
+  sleep 6s
 
 echo "========================================================================="
 
@@ -103,6 +105,14 @@ if [ -f $FILE ]
 then
   echo "========================================================================="
   Print_Style "El fichero $FILE existe" "$GREEN"
+  
+    encontrar=`sudo cat $FILE | sudo grep eval | wc -l`
+    
+    if [ $encontrar -gt 0 ];then
+      echo "Encontrado"
+    else
+      echo "NO encontrado"
+    fi
 
 
 #   sudo sed -i 's/^eval .*$/eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"/' ~/.bashrc
@@ -110,10 +120,3 @@ else
   echo "El fichero $FILE no existe"
 fi
 
-encontrar=`sudo cat $FILE | sudo grep eval | wc -l`
-  
-  if [ $encontrar -gt 0 ];then
-    echo "Encontrado"
-  else
-    echo "NO encontrado"
-  fi
