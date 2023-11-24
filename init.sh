@@ -53,3 +53,43 @@ function read_with_prompt {
   Print_Style "$DirName" "$YELLOW"
   Print_Style "$UserName" "$MAGENTA"
   sleep 1s
+
+# Print_Style "" "$"
+# 
+## Cómo instalar Linux, Nginx, MySQL y PHP (pila LEMP)
+Print_Style "========================================" "$REVERSE"
+Print_Style "Paso 1: Instalación el servidor web Nginx" "$BLINK"
+Print_Style "========================================" "$REVERSE"
+sleep 1s
+# Instalar el servidor web Nginx
+Print_Style "Instalando servidor web Nginx" "$GREEN"
+sudo apt update
+sudo apt install nginx -y
+
+
+Print_Style "verificando perfiles UFW disponibles" "$"
+sudo ufw app list
+
+Print_Style "habilitando el perfil más restrictivo" "$CYAN"
+sudo ufw allow 'Nginx HTTP'
+Print_Style "Mostrando tráfico de HTTP" "$YELLOW"
+sudo ufw status
+
+Print_Style "Dirección IP accesible o pública" "$RED"
+dirección IP accesible
+
+rint_Style "========================================" "$REVERSE"
+# Print_Style "Paso 2: Instalacion de MySQL" "$BLINK"
+Print_Style "========================================" "$REVERSE"
+# sleep 1s
+
+Print_Style "========================================" "$REVERSE"
+Print_Style "Paso 3: Instalacion de PHP" "$BLINK"
+Print_Style "========================================" "$REVERSE"
+sleep 1s
+
+Print_Style "Instalando paquetes php-fpm y php-mysql" "$GREEN"
+sudo apt update && sudo apt install php-fpm -y
+#sudo apt install php-fpm php-mysql
+
+Print_Style "Configurando Nginx para utilizar el procesador PHP" "$GREEN"
