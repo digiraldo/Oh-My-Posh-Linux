@@ -122,6 +122,11 @@ sleep 2s
 sudo rm -rf themes.zip
 
 echo "========================================================================="
+Print_Style "Migrar ubicacion de fuentes" "$CYAN"
+sleep 2s
+sudo oh-my-posh config migrate glyphs --write
+
+echo "========================================================================="
 echo "========================== ACTIVAR ======================================"
 echo "========================================================================="
 sleep 2s
@@ -135,6 +140,7 @@ Print_Style "Enlazar el script en .bashrc" "$BLUE"
 sleep 2s
 cd ~
 sudo echo "source .oh-my-post-init.sh" >> .bashrc
+
 
 echo "========================================================================="
 Print_Style "Inicializar el prompt con:" "$MAGENTA"
