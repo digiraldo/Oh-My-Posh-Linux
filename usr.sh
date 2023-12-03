@@ -66,15 +66,19 @@ sleep 1s
 Print_Style "=========================================================================" "$BLUE"
 echo "Escriba el nombre de usuario que va a agregar como administrador..."
 echo "========================================================================="
-read_with_prompt UserAdmin "Nombre de Usuario"
+read_with_prompt usu "Nombre de Usuario"
 
-Print_Style "Agregando $UserAdmin como administrador" "$GREEN"
+Print_Style "Agregando $usu como administrador" "$GREEN"
 sleep 3s
-sudo sed -i '$UserAdmin    ALL=(ALL:ALL) ALL' /etc/sudoers
+# sudo sed -i '$usu    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-#sudo sed -i '/$UserName ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
-#sudo sed -i '$a $UserName ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
-#sudo sed -n "/$UserName ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+#sudo sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
+#sudo sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+#sudo sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+
+sudo sed -i '/$usu ALL=(ALL:ALL) ALL/d' /etc/sudoers
+sudo sed -i '$a $usu ALL=(ALL:ALL) ALL' /etc/sudoers
+sudo sed -n "/$usu ALL=(ALL:ALL) ALL/p" /etc/sudoers
 
 sudo rm -rf usr.sh
 
