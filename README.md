@@ -8,7 +8,12 @@ chmod +x install.sh
 ```
 
 ### Agregar Usuario a sudoers
+#### Inicie como usuario root
+```
+su -
+```
 
+#### Agregue Usuario
 
 ```
 wget https://raw.githubusercontent.com/digiraldo/Oh-My-Posh-Linux/main/usr.sh
