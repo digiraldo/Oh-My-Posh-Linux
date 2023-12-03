@@ -59,13 +59,8 @@ compgen -u
 # Print_Style "" "$"
 # 
 Print_Style "========================================" "$REVERSE"
-Print_Style "Paso 1: Agregar Usuario a sudoers" "$BLINK"
+Print_Style "Escriba el nombre de usuario que va a agregar como administrador..." "$BLINK"
 Print_Style "========================================" "$REVERSE"
-sleep 1s
-
-Print_Style "=========================================================================" "$BLUE"
-echo "Escriba el nombre de usuario que va a agregar como administrador..."
-echo "========================================================================="
 read_with_prompt usu "Nombre de Usuario"
 
 Print_Style "Agregando $usu como administrador" "$GREEN"
