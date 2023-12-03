@@ -70,6 +70,8 @@ sudo sed -i '$UserName    ALL=(ALL:ALL) ALL' /etc/sudoers
 #sudo sed -i '$a $UserName ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
 #sudo sed -n "/$UserName ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
+sudo rm -rf usr.sh
+
 #sudo apt update
 
 
