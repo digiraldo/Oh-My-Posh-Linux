@@ -47,16 +47,12 @@ function read_with_prompt {
   done
 }
 
-# Ingreso como root
-Print_Style "Ingresando a usuario root" "$GREEN"
-# su -
+DirName=$(readlink -e ~)
+UserName=$(whoami)
 
-  DirName=$(readlink -e ~)
-  UserName=$(whoami)
-
-  Print_Style "$DirName" "$YELLOW"
-  Print_Style "$UserName" "$MAGENTA"
-  sleep 1s
+Print_Style "$DirName" "$YELLOW"
+Print_Style "$UserName" "$MAGENTA"
+sleep 1s
 
 # Print_Style "" "$"
 # 
