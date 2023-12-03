@@ -65,11 +65,11 @@ read_with_prompt usu "Nombre de Usuario"
 
 Print_Style "Agregando $usu como administrador" "$GREEN"
 sleep 3s
-sed -i '$usu    ALL=(ALL:ALL) ALL' /etc/sudoers
+# sed -i '$usu    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-#sudo sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
-#sudo sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
-#sudo sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
+sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
 
 sudo rm -rf usr.sh
