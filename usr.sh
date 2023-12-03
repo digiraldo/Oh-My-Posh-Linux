@@ -67,8 +67,9 @@ Print_Style "Agregando $usu como administrador" "$GREEN"
 sleep 3s
 # sed -i '$usu    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-sed '/root/ $usu    ALL=(ALL:ALL' -i /etc/sudoers
+sed '/root/ usuadmin    ALL=(ALL:ALL' -i /etc/sudoers
 
+sed -i "s:usuadmin:$usu:g" /etc/sudoers
 #sudo sed -i -e '$a $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
 # sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
 # sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
