@@ -53,17 +53,24 @@ UserName=$(whoami)
 Print_Style "$DirName" "$YELLOW"
 Print_Style "$UserName" "$MAGENTA"
 sleep 1s
-
+Print_Style "Buscando todos los usuarios" "$MAGENTA"
+sleep 1s
+compgen -u
 # Print_Style "" "$"
 # 
 Print_Style "========================================" "$REVERSE"
-Print_Style "Paso 1: Agregando Usuario a sudoers" "$BLINK"
+Print_Style "Paso 1: Agregar Usuario a sudoers" "$BLINK"
 Print_Style "========================================" "$REVERSE"
 sleep 1s
 
-Print_Style "Agregando $UserName como administrador" "$GREEN"
+Print_Style "=========================================================================" "$BLUE"
+echo "Escriba el nombre de usuario que va a agregar como administrador..."
+echo "========================================================================="
+read_with_prompt UserAdmin "Nombre de Usuario"
+
+Print_Style "Agregando $UserAdmin como administrador" "$GREEN"
 sleep 3s
-sudo sed -i '$UserName    ALL=(ALL:ALL) ALL' /etc/sudoers
+sudo sed -i '$UserAdmin    ALL=(ALL:ALL) ALL' /etc/sudoers
 
 #sudo sed -i '/$UserName ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
 #sudo sed -i '$a $UserName ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
