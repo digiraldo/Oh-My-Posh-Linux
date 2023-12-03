@@ -15,7 +15,6 @@ wget https://raw.githubusercontent.com/digiraldo/Oh-My-Posh-Linux/main/usr.sh
 chmod +x usr.sh
 ./usr.sh
 ```
-``
 
 ### Repostorio de Pruebas
 
