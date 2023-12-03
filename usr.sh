@@ -58,18 +58,19 @@ sleep 1s
 compgen -u
 # Print_Style "" "$"
 # 
-Print_Style "========================================" "$REVERSE"
-Print_Style "Escriba el nombre de usuario que va a agregar como administrador..." "$BLINK"
-Print_Style "========================================" "$REVERSE"
+Print_Style "===================================================================" "$REVERSE"
+Print_Style "Escriba el nombre de usuario que va a agregar como administrador..." "$BRIGHT"
+Print_Style "===================================================================" "$REVERSE"
 read_with_prompt usu "Nombre de Usuario"
 
 Print_Style "Agregando $usu como administrador" "$GREEN"
 sleep 3s
 # sed -i '$usu    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
-sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
-sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+sed -i -e '$a2 $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
+# sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
+# sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+# sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
 
 sudo rm -rf usr.sh
