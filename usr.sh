@@ -63,11 +63,12 @@ sleep 1s
 # Ingreso como root
 Print_Style "Ingresando a usuario root" "$GREEN"
 su -
-#sudo sed -i '$UserName    ALL=(ALL:ALL) ALL' /etc/sudoers
+sleep 3s
+sudo sed -i '$UserName    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-sudo sed -i '/$UserName ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
-sudo sed -i '$a $UserName ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
-sudo sed -n "/$UserName ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+#sudo sed -i '/$UserName ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
+#sudo sed -i '$a $UserName ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+#sudo sed -n "/$UserName ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
 #sudo apt update
 
