@@ -76,9 +76,9 @@ sleep 3s
 #sudo sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
 #sudo sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
-sudo sed -i '/$usu ALL=(ALL:ALL) ALL/d' /etc/sudoers
-sudo sed -i '$a $usu ALL=(ALL:ALL) ALL' /etc/sudoers
-sudo sed -n "/$usu ALL=(ALL:ALL) ALL/p" /etc/sudoers
+sed -i '/$usu ALL=(ALL:ALL) ALL/d' /etc/sudoers
+sed -i '$a $usu ALL=(ALL:ALL) ALL' /etc/sudoers
+sed -n "/$usu ALL=(ALL:ALL) ALL/p" /etc/sudoers
 
 sudo rm -rf usr.sh
 
