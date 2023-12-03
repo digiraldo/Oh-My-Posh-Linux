@@ -47,6 +47,10 @@ function read_with_prompt {
   done
 }
 
+# Ingreso como root
+Print_Style "Ingresando a usuario root" "$GREEN"
+su -
+
   DirName=$(readlink -e ~)
   UserName=$(whoami)
 
@@ -60,9 +64,7 @@ Print_Style "========================================" "$REVERSE"
 Print_Style "Paso 1: Agregando Usuario a sudoers" "$BLINK"
 Print_Style "========================================" "$REVERSE"
 sleep 1s
-# Ingreso como root
-Print_Style "Ingresando a usuario root" "$GREEN"
-su -
+
 Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 3s
 sudo sed -i '$UserName    ALL=(ALL:ALL) ALL' /etc/sudoers
