@@ -63,6 +63,7 @@ sleep 1s
 # Ingreso como root
 Print_Style "Ingresando a usuario root" "$GREEN"
 su -
+Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 3s
 sudo sed -i '$UserName    ALL=(ALL:ALL) ALL' /etc/sudoers
 
