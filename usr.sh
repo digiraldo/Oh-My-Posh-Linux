@@ -67,9 +67,9 @@ Print_Style "Agregando $usu como administrador" "$GREEN"
 sleep 1s
 # sudo sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
+# sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
 
-# sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL) ALL"
+sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL) ALL"
 
 # sudo sed -i "s:este:$usu:g" /etc/sudoers
 
