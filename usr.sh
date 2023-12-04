@@ -69,7 +69,10 @@ sudo sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
 # sudo sed -i "/root/ este ALL=(ALL:ALL" /etc/sudoers
 
-sudo sed -i "s:este:$usu:g" /etc/sudoers
+sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL"
+
+# sudo sed -i "s:este:$usu:g" /etc/sudoers
+
 #sudo sed -i -e '$a $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
 # sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
 # sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
