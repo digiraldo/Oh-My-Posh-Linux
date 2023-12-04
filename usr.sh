@@ -72,7 +72,6 @@ sudo sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 # sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL) ALL"
 
 sudo sed -i "s:este:$usu:g" /etc/sudoers
-sudo sed -i "s:este:$usu:g" ~usr.sh
 
 #sudo sed -i -e '$a $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
 # sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
@@ -84,7 +83,7 @@ sudo sed -i "s:este:$usu:g" ~usr.sh
 sudo tail /etc/sudoers
 
 Print_Style "===================================================================" "$REVERSE"
-Print_Style "Agregado \este ALL=\(ALL:ALL\) ALL" "$BRIGHT"
+Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
 
 sleep 1s
