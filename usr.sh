@@ -65,7 +65,7 @@ read_with_prompt usu "Nombre de Usuario"
 
 Print_Style "Agregando $usu como administrador" "$GREEN"
 sleep 1s
-sudo sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
+sudo sed -i 'este    ALL\=\(ALL\:ALL\) ALL' /etc/sudoers
 
 # sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
 
