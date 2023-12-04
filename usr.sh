@@ -80,7 +80,8 @@ sudo sed -i "s:este:$usu:g" /etc/sudoers
 
 
 
-sudo tail /etc/sudoers
+# sudo tail /etc/sudoers
+sudo cat /etc/sudoers
 
 Print_Style "===================================================================" "$REVERSE"
 Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
