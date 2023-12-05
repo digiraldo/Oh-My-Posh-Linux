@@ -75,6 +75,8 @@ Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 1s
 sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
+sed -i -e '$a4 Elsass Grauburgunder 2011' vino.txt
+
 # sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
 
 # sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL) ALL"
@@ -89,7 +91,7 @@ sed -i "s:este:$UserName:g" /etc/sudoers
 
 
 # sudo tail /etc/sudoers
-sudo cat /etc/sudoers
+# sudo cat /etc/sudoers
 
 Print_Style "===================================================================" "$REVERSE"
 # Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
