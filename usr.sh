@@ -56,8 +56,7 @@ sleep 1s
 
 # sudo nautilus
 
-sudo chown root.root /etc/sudoers
-sudo chmod 4755 /etc/sudoers
+sudo su $UserName
 
 sudo apt-get install sed -y
 
