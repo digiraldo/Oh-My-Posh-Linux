@@ -69,9 +69,9 @@ compgen -u
 Print_Style "===================================================================" "$REVERSE"
 Print_Style "Escriba el nombre de usuario que va a agregar como administrador... Ej: $UserName" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
-read_with_prompt $UserName "Nombre de Usuario"
+read_with_prompt $UserN "Nombre de Usuario"
 
-Print_Style "Agregando $UserName como administrador" "$GREEN"
+Print_Style "Agregando $UserN como administrador" "$GREEN"
 sleep 1s
 #sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
@@ -83,14 +83,18 @@ sleep 1s
 
 #sudo sed -i -e '$a $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
 
-sed -i '/este ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
-sed -i '$a este ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
-sed -n "/este ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+# sed -i '/este ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
+# sed -i '$a este ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+# sed -n "/este ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
+
+sed -i '/este ALL=(ALL:ALL) ALL/d' /etc/sudoers
+sed -i '$a este ALL=(ALL:ALL) ALL' /etc/sudoers
+sed -n "/este ALL=(ALL:ALL) ALL/p" /etc/sudoers
 
 Print_Style "Agregando..." "$GREEN"
 sleep 1s
 
-sed -i "s:este:$UserName:g" /etc/sudoers
+sed -i "s:este:$UserN:g" /etc/sudoers
 
 # sudo tail /etc/sudoers
 # sudo cat /etc/sudoers
