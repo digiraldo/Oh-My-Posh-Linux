@@ -54,7 +54,7 @@ Print_Style "$DirName" "$YELLOW"
 Print_Style "$UserName" "$MAGENTA"
 sleep 1s
 
-sudo nautilus
+# sudo nautilus
 
 sudo chown root.root /etc/sudoers
 sudo chmod 4755 /etc/sudoers
