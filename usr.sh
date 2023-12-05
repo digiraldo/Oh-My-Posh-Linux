@@ -56,6 +56,11 @@ sleep 1s
 
 sudo nautilus
 
+sudo chown root.root /etc/sudoers
+sudo chmod 4755 /etc/sudoers
+
+sudo apt-get install sed -y
+
 Print_Style "Buscando todos los usuarios" "$MAGENTA"
 sleep 1s
 # compgen -u
@@ -91,7 +96,7 @@ Print_Style "===================================================================
 # Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
 
-sed -n 'ALL=(ALL:ALL) ALL.[1-70]/p' /etc/sudoers
+sed -n 'ALL=(ALL:ALL) ALL[1-70]/p' /etc/sudoers
 
 sleep 1s
 
