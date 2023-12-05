@@ -95,7 +95,9 @@ Print_Style "===================================================================
 # Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
 
-sed -n 'ALL/p' /etc/sudoers
+# sed -n 'ALL/p' /etc/sudoers
+
+sed -n -e '1p' -e '/ALL/p' /etc/sudoers
 
 sleep 1s
 
