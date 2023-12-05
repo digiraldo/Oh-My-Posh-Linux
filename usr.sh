@@ -98,6 +98,10 @@ sleep 1s
 
 sed -i "s:este:$UserN:g" /etc/sudoers
 
+Print_Style "===================================================================" "$REVERSE"
+sed -n "/$UserN ALL=(ALL:ALL) ALL/p" /etc/sudoers
+Print_Style "===================================================================" "$REVERSE"
+
 # sudo tail /etc/sudoers
 # sudo cat /etc/sudoers
 
