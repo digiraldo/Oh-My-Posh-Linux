@@ -69,7 +69,7 @@ compgen -u
 Print_Style "===================================================================" "$REVERSE"
 Print_Style "Escriba el nombre de usuario que va a agregar como administrador... Ej: $UserName" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
-read_with_prompt $UserN "Nombre de Usuario"
+read_with_prompt UserN "Nombre de Usuario"
 
 Print_Style "Agregando $UserN como administrador" "$GREEN"
 sleep 1s
