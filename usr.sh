@@ -73,22 +73,24 @@ read_with_prompt $UserName "Nombre de Usuario"
 
 Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 1s
-sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
+#sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
-sed -i -e '$a4 Elsass Grauburgunder 2011' vino.txt
+# sed -i -e 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
 # sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
 
 # sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL) ALL"
 
-sed -i "s:este:$UserName:g" /etc/sudoers
-
 #sudo sed -i -e '$a $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
-# sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
-# sed -i '$a $usu ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
-# sed -n "/$usu ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
+sed -i '/este ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
+sed -i '$a este ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+sed -n "/este ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
+Print_Style "Agregando..." "$GREEN"
+sleep 1s
+
+sed -i "s:este:$UserName:g" /etc/sudoers
 
 # sudo tail /etc/sudoers
 # sudo cat /etc/sudoers
@@ -107,4 +109,5 @@ sudo rm -rf usr.sh
 
 #sudo apt update
 
-
+# Añadir un espacio al final de una palabra encontrada
+# sed -i '/palabra_o_patron_a_buscar/G' nombre_fichero
