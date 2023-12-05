@@ -56,20 +56,20 @@ sleep 1s
 
 # sudo nautilus
 
-sudo su $UserName
+# sudo su $UserName
 
 sudo apt-get install sed -y
 
 Print_Style "Buscando todos los usuarios" "$MAGENTA"
 sleep 1s
-# compgen -u
+compgen -u
 
 # Print_Style "" "$"
 # 
 Print_Style "===================================================================" "$REVERSE"
 Print_Style "Escriba el nombre de usuario que va a agregar como administrador... Ej: $UserName" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
-#read_with_prompt $UserName "Nombre de Usuario"
+read_with_prompt $UserName "Nombre de Usuario"
 
 Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 1s
