@@ -54,7 +54,6 @@ Print_Style "$DirName" "$YELLOW"
 Print_Style "$UserName" "$MAGENTA"
 sleep 1s
 
-sudo nautilus
 # Print_Style "" "$"
 # 
 ## Cómo instalar Linux, Nginx, MySQL y PHP (pila LEMP)
@@ -96,4 +95,3 @@ sudo apt update && sudo apt install php-fpm -y
 Print_Style "Configurando Nginx para utilizar el procesador PHP" "$GREEN"
 
 
-# sed -n 'ejemplo.[1-9]/p' texto.txt

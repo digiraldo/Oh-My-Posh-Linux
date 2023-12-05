@@ -53,17 +53,21 @@ UserName=$(whoami)
 Print_Style "$DirName" "$YELLOW"
 Print_Style "$UserName" "$MAGENTA"
 sleep 1s
+
+sudo nautilus
+
 Print_Style "Buscando todos los usuarios" "$MAGENTA"
 sleep 1s
-compgen -u
+# compgen -u
+
 # Print_Style "" "$"
 # 
 Print_Style "===================================================================" "$REVERSE"
-Print_Style "Escriba el nombre de usuario que va a agregar como administrador..." "$BRIGHT"
+Print_Style "Escriba el nombre de usuario que va a agregar como administrador... Ej: $UserName" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
-read_with_prompt usu "Nombre de Usuario"
+read_with_prompt $UserName "Nombre de Usuario"
 
-Print_Style "Agregando $usu como administrador" "$GREEN"
+Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 1s
 sudo sed -i 'este    ALL\=\(ALL\:ALL\) ALL' /etc/sudoers
 
@@ -84,8 +88,10 @@ sudo sed -i "s:este:$usu:g" /etc/sudoers
 sudo cat /etc/sudoers
 
 Print_Style "===================================================================" "$REVERSE"
-Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
+# Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
+
+sed -n 'ALL=(ALL:ALL) ALL.[1-70]/p' /etc/sudoers
 
 sleep 1s
 
