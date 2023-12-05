@@ -69,17 +69,17 @@ sleep 1s
 Print_Style "===================================================================" "$REVERSE"
 Print_Style "Escriba el nombre de usuario que va a agregar como administrador... Ej: $UserName" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
-read_with_prompt $UserName "Nombre de Usuario"
+#read_with_prompt $UserName "Nombre de Usuario"
 
 Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 1s
-sudo sed -i 'este    ALL\=\(ALL\:ALL\) ALL' /etc/sudoers
+sed -i 'este    ALL\=\(ALL\:ALL\) ALL' /etc/sudoers
 
 # sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
 
 # sudo tee -a /etc/sudoers >>> "$usu ALL=(ALL:ALL) ALL"
 
-sudo sed -i "s:este:$usu:g" /etc/sudoers
+sed -i "s:este:$UserName:g" /etc/sudoers
 
 #sudo sed -i -e '$a $usu ALL=(ALL:ALL) ALL'  /etc/sudoers
 # sed -i '/$usu ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers
