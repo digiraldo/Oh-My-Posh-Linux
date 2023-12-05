@@ -87,11 +87,13 @@ sleep 1s
 # sed -i '$a este ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
 # sed -n "/este ALL=(ALL) NOPASSWD: ALL/p" /etc/sudoers
 
+Print_Style "===================================================================" "$REVERSE"
 sed -i '/este ALL=(ALL:ALL) ALL/d' /etc/sudoers
 sed -i '$a este ALL=(ALL:ALL) ALL' /etc/sudoers
 sed -n "/este ALL=(ALL:ALL) ALL/p" /etc/sudoers
+Print_Style "===================================================================" "$REVERSE"
 
-Print_Style "Agregando..." "$GREEN"
+Print_Style "Configurando usuario $UserN..." "$CYAN"
 sleep 1s
 
 sed -i "s:este:$UserN:g" /etc/sudoers
@@ -99,9 +101,9 @@ sed -i "s:este:$UserN:g" /etc/sudoers
 # sudo tail /etc/sudoers
 # sudo cat /etc/sudoers
 
-Print_Style "===================================================================" "$REVERSE"
+
 # Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
-Print_Style "===================================================================" "$REVERSE"
+
 
 # sed -n 'ALL/p' /etc/sudoers
 
