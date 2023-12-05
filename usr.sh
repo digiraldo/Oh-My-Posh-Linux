@@ -73,7 +73,7 @@ read_with_prompt $UserName "Nombre de Usuario"
 
 Print_Style "Agregando $UserName como administrador" "$GREEN"
 sleep 1s
-sed -i 'este    ALL\=\(ALL\:ALL\) ALL' /etc/sudoers
+sed -i 'este    ALL=(ALL:ALL) ALL' /etc/sudoers
 
 # sudo sed -i "/root/ \$usu ALL=\(ALL:ALL\) ALL" /etc/sudoers
 
@@ -95,7 +95,7 @@ Print_Style "===================================================================
 # Print_Style "Agregado $usu ALL=(ALL:ALL) ALL" "$BRIGHT"
 Print_Style "===================================================================" "$REVERSE"
 
-sed -n 'ALL=(ALL:ALL) ALL[1-70]/p' /etc/sudoers
+sed -n 'ALL/p' /etc/sudoers
 
 sleep 1s
 
