@@ -59,6 +59,7 @@ sleep 1s
 # sudo su $UserName
 
 sudo apt-get install sed -y
+sudo apt install net-tools -y
 
 Print_Style "Buscando todos los usuarios" "$MAGENTA"
 sleep 1s
@@ -121,3 +122,8 @@ sudo rm -rf usr.sh
 
 # Añadir un espacio al final de una palabra encontrada
 # sed -i '/palabra_o_patron_a_buscar/G' nombre_fichero
+
+
+# sudo systemctl edit php-fpm.service
+# sudo service nginx reload
+# sudo service php7.4-fpm restart
