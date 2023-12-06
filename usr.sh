@@ -132,3 +132,5 @@ sudo rm -rf usr.sh
 # /var/run/php/php7.2-fpm.sock
 
 # https://serverfault.com/questions/317231/when-accessing-php-files-nginx-throws-an-404-error
+
+# https://stackoverflow.com/questions/70297812/nginx-php-404-not-found-when-redirecting-away-from-main-website
