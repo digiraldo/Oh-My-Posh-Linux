@@ -127,3 +127,4 @@ sudo rm -rf usr.sh
 # sudo systemctl edit php-fpm.service
 # sudo service nginx reload
 # sudo service php7.4-fpm restart
+# https://serverfault.com/questions/1123472/nginx-returning-404-on-new-installation
