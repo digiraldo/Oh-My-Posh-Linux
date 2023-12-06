@@ -134,3 +134,5 @@ sudo rm -rf usr.sh
 # https://serverfault.com/questions/317231/when-accessing-php-files-nginx-throws-an-404-error
 
 # https://stackoverflow.com/questions/70297812/nginx-php-404-not-found-when-redirecting-away-from-main-website
+
+# https://stackoverflow.com/questions/51254473/php-with-nginx-403-forbidden
