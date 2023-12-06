@@ -130,3 +130,5 @@ sudo rm -rf usr.sh
 # https://serverfault.com/questions/1123472/nginx-returning-404-on-new-installation
 
 # /var/run/php/php7.2-fpm.sock
+
+# https://serverfault.com/questions/317231/when-accessing-php-files-nginx-throws-an-404-error
