@@ -125,6 +125,9 @@ sudo rm -rf usr.sh
 
 
 # sudo systemctl edit php-fpm.service
+
+# sudo systemctl status nginx.service
+
 # sudo service nginx reload
 # sudo service php7.4-fpm restart
 # https://serverfault.com/questions/1123472/nginx-returning-404-on-new-installation
@@ -136,3 +139,5 @@ sudo rm -rf usr.sh
 # https://stackoverflow.com/questions/70297812/nginx-php-404-not-found-when-redirecting-away-from-main-website
 
 # https://stackoverflow.com/questions/51254473/php-with-nginx-403-forbidden
+
+sudo chmod 755 /var/www
