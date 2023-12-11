@@ -6,7 +6,9 @@ wget https://raw.githubusercontent.com/digiraldo/Oh-My-Posh-Linux/main/install.s
 chmod +x install.sh
 ./install.sh
 ```
-
+```
+curl -s https://ohmyposh.dev/install.sh | bash -s
+```
 ```
 wget https://ohmyposh.dev/install.sh
 chmod +x install.sh
