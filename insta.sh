@@ -76,10 +76,17 @@ echo "========================================================================="
 cd ~
 sudo apt update
 sudo apt upgrade -y
-sudo apt install curl
+# sudo apt install curl
 Print_Style "Descargando oh-my-posh" "$GREEN"
 sleep 2s
-sudo curl -s https://ohmyposh.dev/install.sh | bash -s
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
+sudo brew install jandedobbeleer/oh-my-posh/oh-my-posh
+
+# sudo curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 
@@ -155,5 +162,7 @@ sleep 4s
 # source .bashrc
 Print_Style "source .bashrc" "$REVERSE"
 Print_Style "source .oh-my-post-init.sh" "$REVERSE"
+
+
 
 sudo rm -rf insta.sh
