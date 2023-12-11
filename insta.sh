@@ -155,3 +155,5 @@ sleep 4s
 # source .bashrc
 Print_Style "source .bashrc" "$REVERSE"
 Print_Style "source .oh-my-post-init.sh" "$REVERSE"
+
+sudo rm -rf insta.sh
