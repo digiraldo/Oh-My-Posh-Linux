@@ -121,6 +121,13 @@ sleep 1s
 
 sudo rm -rf usr.sh
 
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+sudo ufw allow ssh
+sleep 2s
+
+sudo service ssh restart
 #sudo apt update
 
 # Añadir un espacio al final de una palabra encontrada
