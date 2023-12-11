@@ -7,6 +7,12 @@ chmod +x install.sh
 ./install.sh
 ```
 
+```
+wget https://ohmyposh.dev/install.sh
+chmod +x install.sh
+./install.sh
+```
+
 ### Agregar Usuario a sudoers
 #### Inicie primero como usuario root
 ```
