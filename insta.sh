@@ -47,6 +47,40 @@ function read_with_prompt {
   done
 }
 
+# https://medium.com/linux-tips-101/bash-script-con-salida-en-colores-82bab9263998
+
+function logWarn() {
+	START='\033[01;33m'
+	END='\033[00;00m'
+	MESSAGE=${@:-""}
+	echo -e "${START}${MESSAGE}${END}"
+}
+
+function logInfo() {
+	START='\033[01;32m'
+	END='\033[00;00m'
+	MESSAGE=${@:-""}
+	echo -e "${START}${MESSAGE}${END}"
+}
+
+function logError() {
+	START='\033[01;31m'
+	END='\033[00;00m'
+	MESSAGE=${@:-""}
+	echo -e "${START}${MESSAGE}${END}"
+}
+
+function log() {
+        MESSAGE=${@:-""}
+        echo -e "${MESSAGE}"
+}
+
+log "Mensaje con Texto Normal"
+logInfo "Mensaje con Texto Informativo (Verde)"
+logWarn "Mensaje con Texto para Alarma (Amarillo)"
+logError "Mensaje con Texto para Error (Rojo)"
+
+
   DirName=$(readlink -e ~)
   UserName=$(whoami)
 
@@ -203,4 +237,6 @@ Print_Style "source .bashrc" "$REVERSE"
 Print_Style "source .oh-my-post-init.sh" "$REVERSE"
 
 
+brew update && brew upgrade oh-my-posh
+eval "$(oh-my-posh init bash --config ~/jandedobbeleer.omp.json)"
 sudo rm insta.sh
