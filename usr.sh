@@ -60,6 +60,7 @@ sleep 1s
 
 sudo apt-get install sed -y
 sudo apt install net-tools -y
+sudo apt install openssh-server -y
 
 Print_Style "Buscando todos los usuarios" "$MAGENTA"
 sleep 1s
@@ -114,6 +115,8 @@ Print_Style "===================================================================
 
 sed -n -e '1p' -e '/ALL/p' /etc/sudoers
 
+
+
 sleep 1s
 
 sudo rm -rf usr.sh
@@ -140,4 +143,4 @@ sudo rm -rf usr.sh
 
 # https://stackoverflow.com/questions/51254473/php-with-nginx-403-forbidden
 
-sudo chmod 755 /var/www
+# sudo chmod 755 /var/www
