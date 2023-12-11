@@ -34,3 +34,8 @@ wget https://raw.githubusercontent.com/digiraldo/Oh-My-Posh-Linux/main/init.sh
 chmod +x init.sh
 ./init.sh
 ```
+```
+wget https://raw.githubusercontent.com/digiraldo/Oh-My-Posh-Linux/main/insta.sh
+chmod +x insta.sh
+./insta.sh
+```

@@ -74,15 +74,20 @@ function read_with_prompt {
 
 echo "========================================================================="
 cd ~
+sudo apt update
+sudo apt upgrade -y
+sudo apt install curl
 Print_Style "Descargando oh-my-posh" "$GREEN"
 sleep 2s
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
+
+# sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 
 echo "========================================================================="
 Print_Style "Asignando permisos de ejecucion" "$YELLOW"
 sleep 2s
 cd ~
-sudo chmod +x /usr/local/bin/oh-my-posh
+# sudo chmod +x /usr/local/bin/oh-my-posh
 #sudo chmod +x $DirName/bin/oh-my-posh
 
 
@@ -93,38 +98,38 @@ sleep 2s
 Print_Style "Asignando permisos" "$BLUE"
 sleep 2s
 cd ~
-sudo mkdir ~/.poshthemes
+# sudo mkdir ~/.poshthemes
 Print_Style "seleccionamos fuente FiraCode o Meslo" "$REVERSE"
-sudo oh-my-posh font install
+# sudo oh-my-posh font install
 
 echo "========================================================================="
 Print_Style "Descargando Temas" "$MAGENTA"
 sleep 1s
 cd ~
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
+# sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
 
 echo "========================================================================="
 Print_Style "Descomprimiendo" "$CYAN"
 sleep 2s
-sudo apt install unzip
+# sudo apt install unzip
 cd ~
-sudo unzip themes.zip -d ~/.poshthemes
+# sudo unzip themes.zip -d ~/.poshthemes
 
 echo "========================================================================="
 Print_Style "Asignando permisos" "$RED"
 sleep 2s
 cd ~
-sudo chmod u+rw,g+r ~/.poshthemes/*.json
+# sudo chmod u+rw,g+r ~/.poshthemes/*.json
 
 echo "========================================================================="
 Print_Style "Eliminando archivo comprimido" "$GREEN"
 sleep 2s
-sudo rm -rf themes.zip
+# sudo rm -rf themes.zip
 
 echo "========================================================================="
 Print_Style "Migrar ubicacion de fuentes" "$CYAN"
 sleep 2s
-sudo oh-my-posh config migrate glyphs --write
+# sudo oh-my-posh config migrate glyphs --write
 
 echo "========================================================================="
 echo "========================== ACTIVAR ======================================"
@@ -133,20 +138,20 @@ sleep 2s
 Print_Style "Creaar script de inicio para BASH" "$YELLOW"
 sleep 2s
 cd ~
-sudo oh-my-posh init bash --config .poshthemes/jandedobbeleer.omp.json > .oh-my-post-init.sh
+# sudo oh-my-posh init bash --config .poshthemes/jandedobbeleer.omp.json > .oh-my-post-init.sh
 
 echo "========================================================================="
 Print_Style "Enlazar el script en .bashrc" "$BLUE"
 sleep 2s
 cd ~
-sudo echo "source .oh-my-post-init.sh" >> .bashrc
+# sudo echo "source .oh-my-post-init.sh" >> .bashrc
 
 
 echo "========================================================================="
 Print_Style "Inicializar el prompt con:" "$MAGENTA"
 sleep 2s
-source .oh-my-post-init.sh
+# source .oh-my-post-init.sh
 sleep 4s
-source .bashrc
+# source .bashrc
 Print_Style "source .bashrc" "$REVERSE"
 Print_Style "source .oh-my-post-init.sh" "$REVERSE"
