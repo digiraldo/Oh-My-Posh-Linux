@@ -79,7 +79,7 @@ sudo apt upgrade -y
 sudo apt install curl
 Print_Style "Descargando oh-my-posh" "$GREEN"
 sleep 2s
-curl -s https://ohmyposh.dev/install.sh | bash -s
+sudo curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 
