@@ -150,3 +150,10 @@ sleep 4s
 source .bashrc
 Print_Style "source .bashrc" "$REVERSE"
 Print_Style "source .oh-my-post-init.sh" "$REVERSE"
+
+
+# Hacer instantaneas en linux
+# https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b
+sudo add-apt-repository -y ppa:teejee2008/timeshift
+sudo apt update
+sudo apt install timeshift -y

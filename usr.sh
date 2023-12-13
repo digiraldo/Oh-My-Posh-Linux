@@ -62,6 +62,12 @@ sudo apt-get install sed -y
 sudo apt install net-tools -y
 sudo apt install openssh-server -y
 
+# Hacer instantaneas en linux
+# https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b
+sudo add-apt-repository -y ppa:teejee2008/timeshift
+sudo apt update
+sudo apt install timeshift -y
+
 Print_Style "Buscando todos los usuarios" "$MAGENTA"
 sleep 1s
 compgen -u
