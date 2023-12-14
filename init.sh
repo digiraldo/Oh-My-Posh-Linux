@@ -119,3 +119,4 @@ chmod +x misitio.conf
 
 
 # https://howtoforge.es/como-instalar-nginx-con-php-y-mysql-lemp-stack-en-ubuntu-22-04/
+# https://guias.donweb.com/como-instalar-un-stack-lemp-linux-nginx-mysql-y-php-en-ubuntu-22-04/
