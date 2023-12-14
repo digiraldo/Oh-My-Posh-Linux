@@ -87,19 +87,7 @@ nginx -v
 
 sleep 1s
 
-Print_Style "verificando perfiles UFW disponibles" "$GREEN"
-sudo ufw app list
 
-Print_Style "habilitando el perfil más restrictivo" "$CYAN"
-sudo ufw allow 'Nginx HTTP'
-Print_Style "Mostrando tráfico de HTTP" "$YELLOW"
-sudo ufw status
-
-Print_Style "Dirección IP accesible o pública" "$RED"
-#dirección IP accesible
-
-rint_Style "========================================" "$REVERSE"
-# Print_Style "Paso 2: Instalacion de MySQL" "$BLINK"
 Print_Style "========================================" "$REVERSE"
 # sleep 1s
 
@@ -112,7 +100,9 @@ Print_Style "Instalando paquetes php-fpm" "$GREEN"
 sudo apt update && sudo apt install php-fpm -y
 #sudo apt install php-fpm php-mysql
 
-sudo systemctl status nginx mysql
+sudo systemctl restart nginx.service
+sleep 1s
+sudo systemctl status nginx.service
 
 Print_Style "Configurando Nginx para utilizar el procesador PHP" "$GREEN"
 
