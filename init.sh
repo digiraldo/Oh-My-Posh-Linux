@@ -119,7 +119,7 @@ cd ~
 
 # Descargar cloud.sh desde el repositorio
 echo "Tomando misitio.conf del repositorio..."
-curl -H "Accept-Encoding: identity" -L -o cloud.sh https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server/main/misitio.conf
+curl -H "Accept-Encoding: identity" -L -o cloud.sh https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server-Panel-Admin-Web/master/misitio.conf
 chmod +x misitio.conf
 #sudo sed -i "s:dirname:$DirName:g" cloud.sh
 #sudo sed -i "s:servername:$ServerName:g" cloud.sh
