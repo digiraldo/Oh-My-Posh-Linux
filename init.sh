@@ -64,8 +64,8 @@ Print_Style "========================================" "$REVERSE"
 sleep 1s
 # Instalar el servidor web Nginx
 Print_Style "Instalando servidor web Nginx" "$GREEN"
-sudo apt update
-# sudo apt update && sudo apt upgrade
+#sudo apt update
+sudo apt update && sudo apt upgrade
 
 # Importa la clave de firma de Nginx
 curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
