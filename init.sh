@@ -50,6 +50,7 @@ function read_with_prompt {
 DirName=$(readlink -e ~)
 UserName=$(whoami)
 
+
 Print_Style "$DirName" "$YELLOW"
 Print_Style "$UserName" "$MAGENTA"
 sleep 1s
@@ -83,8 +84,9 @@ sudo apt install nginx -y
 # Verifica la instalación
 nginx -v
 
+sleep 1s
 
-Print_Style "verificando perfiles UFW disponibles" "$"
+Print_Style "verificando perfiles UFW disponibles" "$GREEN"
 sudo ufw app list
 
 Print_Style "habilitando el perfil más restrictivo" "$CYAN"
@@ -93,7 +95,7 @@ Print_Style "Mostrando tráfico de HTTP" "$YELLOW"
 sudo ufw status
 
 Print_Style "Dirección IP accesible o pública" "$RED"
-dirección IP accesible
+#dirección IP accesible
 
 rint_Style "========================================" "$REVERSE"
 # Print_Style "Paso 2: Instalacion de MySQL" "$BLINK"
@@ -105,7 +107,7 @@ Print_Style "Paso 3: Instalacion de PHP" "$BLINK"
 Print_Style "========================================" "$REVERSE"
 sleep 1s
 
-Print_Style "Instalando paquetes php-fpm y php-mysql" "$GREEN"
+Print_Style "Instalando paquetes php-fpm" "$GREEN"
 sudo apt update && sudo apt install php-fpm -y
 #sudo apt install php-fpm php-mysql
 
@@ -116,10 +118,9 @@ Print_Style "Configurando Nginx para utilizar el procesador PHP" "$GREEN"
 
 cd ~
 
-
 # Descargar cloud.sh desde el repositorio
 echo "Tomando misitio.conf del repositorio..."
-curl -H "Accept-Encoding: identity" -L -o cloud.sh https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server-Panel-Admin-Web/master/misitio.conf
+curl -H "Accept-Encoding: identity" -L -o misitio.conf https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server-Panel-Admin-Web/master/misitio.conf
 chmod +x misitio.conf
 #sudo sed -i "s:dirname:$DirName:g" cloud.sh
 #sudo sed -i "s:servername:$ServerName:g" cloud.sh
