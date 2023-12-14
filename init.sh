@@ -63,8 +63,25 @@ Print_Style "========================================" "$REVERSE"
 sleep 1s
 # Instalar el servidor web Nginx
 Print_Style "Instalando servidor web Nginx" "$GREEN"
+sudo apt update && sudo apt upgrade
+
+# Importa la clave de firma de Nginx
+curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor \
+| sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+# Añade el repositorio de la versión estable de Nginx
+echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg arch=amd64] \
+http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
+| sudo tee /etc/apt/sources.list.d/nginx.list
+
+#Actualiza los repositorios del sistema
 sudo apt update
+
+# Instala Nginx
 sudo apt install nginx -y
+
+# Verifica la instalación
+nginx -v
 
 
 Print_Style "verificando perfiles UFW disponibles" "$"
@@ -92,6 +109,21 @@ Print_Style "Instalando paquetes php-fpm y php-mysql" "$GREEN"
 sudo apt update && sudo apt install php-fpm -y
 #sudo apt install php-fpm php-mysql
 
+sudo systemctl status nginx mysql
+
 Print_Style "Configurando Nginx para utilizar el procesador PHP" "$GREEN"
 
 
+cd ~
+
+
+# Descargar cloud.sh desde el repositorio
+echo "Tomando misitio.conf del repositorio..."
+curl -H "Accept-Encoding: identity" -L -o cloud.sh https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server/main/misitio.conf
+chmod +x misitio.conf
+#sudo sed -i "s:dirname:$DirName:g" cloud.sh
+#sudo sed -i "s:servername:$ServerName:g" cloud.sh
+
+
+
+# https://howtoforge.es/como-instalar-nginx-con-php-y-mysql-lemp-stack-en-ubuntu-22-04/
