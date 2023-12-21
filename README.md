@@ -39,3 +39,10 @@ wget https://raw.githubusercontent.com/digiraldo/Oh-My-Posh-Linux/main/insta.sh
 chmod +x insta.sh
 ./insta.sh
 ```
+
+### Repostorio de Pruebas Panel Instalacion Nginx y PHP
+```
+wget https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server-Panel-Admin-Web/master/panel.sh
+chmod +x panel.sh
+./panel.sh
+```
