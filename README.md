@@ -46,3 +46,30 @@ wget https://raw.githubusercontent.com/digiraldo/Minecraft-BE-Server-Panel-Admin
 chmod +x panelwww.sh
 ./panelwww.sh
 ```
+
+### Para Windows
+```
+winget install JanDeDobbeleer.OhMyPosh -s winget
+```
+```
+Get-PoshThemes
+```
+```
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\jandedobbeleer.omp.json" | Invoke-Expression
+```
+```
+oh-my-posh
+```
+* Como administrador instalamos la fuente FiraCode
+```
+oh-my-posh font install
+```
+```
+New-Item -Path $PROFILE -Type File -Force
+```
+```
+notepad $PROFILE
+```
+```
+(@(& $path_exe init pwsh --config=$pathThemes+'atomic.omp.json' --print) -join "`n") | Invoke-Expression
+```
