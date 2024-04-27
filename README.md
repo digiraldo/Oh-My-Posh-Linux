@@ -74,8 +74,7 @@ notepad $PROFILE
 (@(& $path_exe init pwsh --config=$pathThemes+'atomic.omp.json' --print) -join "`n") | Invoke-Expression
 ```
 * Instalar Iconos del Terminal
-```
-```
+
 ```
 Install-Module -Name Terminal-Icons -Repository PSGallery
 ```
@@ -84,5 +83,11 @@ Import-Module Terminal-Icons
 ```
 * Mostrar todo el historial que hemos escrito en el terminal
 ```
+Set-PSReadLineOption -PredictionViewStyle ListView
+```
+* Incluir en el notepad $PROFILE
+```
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+Import-Module Terminal-Icons
 Set-PSReadLineOption -PredictionViewStyle ListView
 ```
