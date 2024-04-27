@@ -168,3 +168,4 @@ sudo apt update
 sudo apt install timeshift -y
 # Video Youtube
 # https://www.youtube.com/watch?v=2VlleD1Dj-4
+# https://www.youtube.com/watch?v=qi5Vzw5AU9M
