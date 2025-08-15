@@ -151,6 +151,70 @@ source .bashrc
 Print_Style "source .bashrc" "$REVERSE"
 Print_Style "source .oh-my-post-init.sh" "$REVERSE"
 
+# eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/atomic.omp.json)"
+eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"
+
+echo "========================================================================="
+echo "========================================================================="
+sudo timedatectl
+echo "========================================================================="
+read -r -p "Sincronizar Zona Horaria? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+echo "========================================================================="
+Print_Style "Configurando Zona Horaria" "$MAGENTA"
+echo "========================================================================="
+echo "Voiendo Zona horaria actual del sistema"
+sudo timedatectl
+echo "========================================================================="
+sleep 5s
+Print_Style "Configurando Sincronizacion de Zona Horaria" "$BLUE"
+sleep 2s
+sudo apt install systemd-timesyncd
+Print_Style "Sincronizando Zona Horaria desde el Sistema" "$BLUE"
+sudo timedatectl set-ntp true
+    sleep 2s
+else
+    Print_Style "Zona Horaria Actual: $CYAN $TZ" "$NORMAL"
+fi
+
+
+
+echo "========================================================================="
+echo "========================================================================="
+sudo timedatectl
+echo "========================================================================="
+TZ=$(sudo cat /etc/timezone)
+Print_Style "Zona Horaria Actual: $CYAN $TZ" "$GREEN"
+echo "========================================================================="
+
+read -r -p "Cambiar Zona Horaria? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    # Digitar Zona Horaria
+    echo "========================================================================="
+    Print_Style "Introduzca la Zona Horaria: " "$MAGENTA"
+    Print_Style "Ejemplos:" "$YELLOW"
+    Print_Style "America/Mexico_City" "$CYAN"
+    Print_Style "America/Bogota" "$CYAN"
+    read_with_prompt NewTZ "Introduzca Zona Horaria"
+    echo "========================================================================="
+    sleep 3s
+    sudo timedatectl set-timezone $NewTZ
+    # sudo timedatectl set-timezone America/Mexico_City
+    TZN=$(sudo cat /etc/timezone)
+    sleep 2s
+    # ln -sfn /usr/share/zoneinfo/$NewTZ /etc/localtime
+    Print_Style "Nueva Zona Horaria: $CYAN $TZN" "$NORMAL"
+    sleep 2s
+else
+    Print_Style "Zona Horaria Actual: $CYAN $TZ" "$NORMAL"
+fi
+
+SistemaLin=$(lsb_release -i)
+var1="$SistemaLin"
+RecorLin=${var1#Distributor ID\:}
+LinuxSistemInstall=$(echo "$RecorLin" | tr -d '[[:space:]]' | awk '{print tolower($0)}')
 
 # Hacer instantaneas en linux
 # https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b
