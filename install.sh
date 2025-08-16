@@ -55,39 +55,63 @@ install_oh_my_posh() {
 configure_omp_theme() {
     print_style "=== Configurando Tema de Oh My Posh en .bashrc ===" "$GREEN"
 
-    # Nombres y rutas de los temas
-    local nombre_tema1="Jandedobbeleer"
-    local config_tema1="~/.poshthemes/jandedobbeleer.omp.json"
-    local nombre_tema2="Atomic"
-    local config_tema2="~/.poshthemes/atomic.omp.json"
-
     echo "Elige el tema que deseas activar:"
     PS3="👉 Por favor, elige una opción: "
-    options=("$nombre_tema1" "$nombre_tema2" "No cambiar")
+    
+    # Lista de opciones para el menú de selección
+    options=(
+        "M365Princess"
+        "Jandedobbeleer"
+        "Larserikfinholt"
+        "Cinnamon"
+        "Markbull"
+        "No cambiar/Cancelar"
+    )
+
     select opt in "${options[@]}"; do
         case $opt in
-            "$nombre_tema1")
-                local config_elegida="$config_tema1"
+            "M365Princess")
+                local config_elegida="~/.poshthemes/M365Princess.omp.json"
                 break
                 ;;
-            "$nombre_tema2")
-                local config_elegida="$config_tema2"
+            "Jandedobbeleer")
+                local config_elegida="~/.poshthemes/jandedobbeleer.omp.json"
                 break
                 ;;
-            "No cambiar")
+            "Larserikfinholt")
+                local config_elegida="~/.poshthemes/larserikfinholt.omp.json"
+                break
+                ;;
+            "Cinnamon")
+                local config_elegida="~/.poshthemes/cinnamon.omp.json"
+                break
+                ;;
+            "Markbull")
+                local config_elegida="~/.poshthemes/markbull.omp.json"
+                break
+                ;;
+            "No cambiar/Cancelar")
                 echo "No se han realizado cambios en .bashrc."
-                return
+                return # Salimos de la función por completo
                 ;;
-            *) echo "Opción inválida $REPLY";;
+            *) 
+                echo "Opción inválida $REPLY. Intenta de nuevo."
+                ;;
         esac
     done
 
+    # Este bloque solo se ejecuta si se eligió una configuración válida
     if [ -n "$config_elegida" ]; then
         print_style "Limpiando configuraciones antiguas de Oh My Posh en .bashrc..." "$YELLOW"
+        # Usamos sed para encontrar y eliminar la línea que inicializa oh-my-posh
         sed -i '/oh-my-posh --init --shell bash/d' ~/.bashrc
         
+        # Construimos la nueva línea de configuración
         local nueva_linea="eval \"\$(oh-my-posh --init --shell bash --config $config_elegida)\""
+        
+        # Añadimos la nueva línea al final del archivo .bashrc
         echo "$nueva_linea" >> ~/.bashrc
+        
         print_style "✅ Tema $(basename "$config_elegida") configurado en ~/.bashrc." "$GREEN"
         echo "Para ver los cambios, reinicia tu terminal o ejecuta: source ~/.bashrc"
     fi
