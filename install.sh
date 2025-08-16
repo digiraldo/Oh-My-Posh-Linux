@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --- CONFIGURACIÓN INICIAL Y MANEJO DE ERRORES ---
+# --- CONFIGURACIÓN INICIAL Y MANEJO DE ERORES ---
 # Detiene el script si un comando falla
 set -e
 
@@ -150,6 +150,94 @@ install_timeshift() {
     fi
 }
 
+# 5. ASEGURAR QUE .bashrc SE CARGUE EN SESIONES SSH
+ensure_ssh_login_loads_bashrc() {
+    print_style "=== Verificando carga de .bashrc para sesiones SSH ===" "$BLUE"
+    
+    # Variable que contiene el código a añadir
+    read -r -d '' codigo_a_anadir <<'EOF'
+
+# Cargar .bashrc si existe para sesiones de login
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+EOF
+    
+    # Variables de estado
+    local profile_has_code=0
+    local bash_profile_has_code=0
+
+    # Verificar ~/.profile
+    if [ -f ~/.profile ] && grep -q '. "$HOME/.bashrc"' ~/.profile; then
+        profile_has_code=1
+        echo "✅ Encontrado: El código ya existe en ~/.profile."
+    else
+        echo "❌ No encontrado: El código falta en ~/.profile."
+    fi
+
+    # Verificar ~/.bash_profile
+    if [ -f ~/.bash_profile ] && grep -q '. "$HOME/.bashrc"' ~/.bash_profile; then
+        bash_profile_has_code=1
+        echo "✅ Encontrado: El código ya existe en ~/.bash_profile."
+    else
+        echo "❌ No encontrado: El código falta en ~/.bash_profile."
+    fi
+
+    # --- FASE DE DECISIÓN Y ACCIÓN ---
+
+    # Escenario 1: Ambos archivos ya están configurados
+    if [ $profile_has_code -eq 1 ] && [ $bash_profile_has_code -eq 1 ]; then
+        print_style "👍 ¡Excelente! La configuración para SSH ya es correcta." "$GREEN"
+        return
+    fi
+
+    # Escenario 2: Falta en ambos archivos
+    if [ $profile_has_code -eq 0 ] && [ $bash_profile_has_code -eq 0 ]; then
+        print_style "🔥 Atención: El código no se encontró en ningún archivo de perfil." "$YELLOW"
+        echo "Agregando la configuración a ~/.profile automáticamente..."
+        echo "$codigo_a_anadir" >> ~/.profile
+        echo "✅ Código añadido con éxito a ~/.profile"
+        return
+    fi
+
+    # Escenario 3: Falta en un solo archivo
+    print_style "👉 Se ha detectado una configuración de perfil incompleta. Elige una acción:" "$CYAN"
+    PS3="Por favor, elige una opción: "
+
+    options=()
+    if [ $profile_has_code -eq 0 ]; then
+        options+=("Agregar código a ~/.profile")
+    fi
+    if [ $bash_profile_has_code -eq 0 ]; then
+        options+=("Agregar código a ~/.bash_profile")
+    fi
+    options+=("Salir sin hacer nada")
+
+    select opt in "${options[@]}"; do
+        case $opt in
+            "Agregar código a ~/.profile")
+                echo "$codigo_a_anadir" >> ~/.profile
+                print_style "✅ ¡Hecho! El código ha sido añadido a ~/.profile." "$GREEN"
+                break
+                ;;
+            "Agregar código a ~/.bash_profile")
+                echo "$codigo_a_anadir" >> ~/.bash_profile
+                print_style "✅ ¡Hecho! El código ha sido añadido a ~/.bash_profile." "$GREEN"
+                break
+                ;;
+            "Salir sin hacer nada")
+                echo "No se han realizado cambios."
+                break
+                ;;
+            *) 
+                echo "Opción inválida: $REPLY. Por favor, intenta de nuevo."
+                ;;
+        esac
+    done
+}
+
 
 # --- FUNCIÓN PRINCIPAL QUE EJECUTA EL SCRIPT ---
 main() {
@@ -164,6 +252,7 @@ main() {
 
     install_oh_my_posh
     configure_omp_theme
+    ensure_ssh_login_loads_bashrc # <-- AQUÍ SE EJECUTA LA NUEVA FUNCIÓN
     configure_timezone
     install_timeshift
 
