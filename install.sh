@@ -109,8 +109,18 @@ configure_omp_theme() {
         # Construimos la nueva línea de configuración
         local nueva_linea="eval \"\$(oh-my-posh --init --shell bash --config $config_elegida)\""
         
-        # Añadimos la nueva línea al final del archivo .bashrc
-        echo "$nueva_linea" >> ~/.bashrc
+        # --- BLOQUE MODIFICADO PARA AÑADIR AL INICIO ---
+        print_style "Añadiendo nueva configuración al INICIO de .bashrc..." "$YELLOW"
+        local temp_file=$(mktemp)
+        # 1. Escribir la nueva línea de Oh My Posh en el archivo temporal.
+        echo "$nueva_linea" > "$temp_file"
+        # 2. Añadir un salto de línea para separar.
+        echo "" >> "$temp_file"
+        # 3. Añadir el contenido del .bashrc original (ya limpio) al archivo temporal.
+        cat ~/.bashrc >> "$temp_file"
+        # 4. Reemplazar el .bashrc original con el nuevo archivo temporal.
+        mv "$temp_file" ~/.bashrc
+        # --- FIN DEL BLOQUE MODIFICADO ---
         
         print_style "✅ Tema $(basename "$config_elegida") configurado en ~/.bashrc." "$GREEN"
         echo "Para ver los cambios, reinicia tu terminal o ejecuta: source ~/.bashrc"
