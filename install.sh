@@ -1,356 +1,150 @@
 #!/bin/bash
-# 
 
-# Colores del terminal
-BLACK=$(tput setaf 0)
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
-LIME_YELLOW=$(tput setaf 190)
-BLUE=$(tput setaf 4)
-MAGENTA=$(tput setaf 5)
-CYAN=$(tput setaf 6)
-WHITE=$(tput setaf 7)
-BRIGHT=$(tput bold)
-NORMAL=$(tput sgr0)
-BLINK=$(tput blink)
-REVERSE=$(tput smso)
-UNDERLINE=$(tput smul)
+# --- CONFIGURACIÓN INICIAL Y MANEJO DE ERRORES ---
+# Detiene el script si un comando falla
+set -e
 
-# Imprime una línea con color usando códigos de terminal
-Print_Style() {
-  printf "%s\n" "${2}$1${NORMAL}"
-}
-
-# Función para leer la entrada del usuario con un mensaje
-function read_with_prompt {
-  variable_name="$1"
-  prompt="$2"
-  default="${3-}"
-  unset $variable_name
-  while [[ ! -n ${!variable_name} ]]; do
-    read -p "$prompt: " $variable_name < /dev/tty
-    if [ ! -n "`which xargs`" ]; then
-      declare -g $variable_name=$(echo "${!variable_name}" | xargs)
-    fi
-    declare -g $variable_name=$(echo "${!variable_name}" | head -n1 | awk '{print $1;}')
-    if [[ -z ${!variable_name} ]] && [[ -n "$default" ]] ; then
-      declare -g $variable_name=$default
-    fi
-    echo -n "$prompt : ${!variable_name} -- aceptar? (y/n)"
-    read answer < /dev/tty
-    if [ "$answer" == "${answer#[Yy]}" ]; then
-      unset $variable_name
-    else
-      echo "$prompt: ${!variable_name}"
-    fi
-  done
-}
-
-  DirName=$(readlink -e ~)
-  UserName=$(whoami)
-
-  Print_Style "$DirName" "$YELLOW"
-  Print_Style "$UserName" "$MAGENTA"
-  sleep 1s
-
-
-  Print_Style "Fuente de Color BLACK" "$BLACK"
-  Print_Style "Fuente de Color RED" "$RED"
-  Print_Style "Fuente de Color GREEN" "$GREEN"
-  Print_Style "Fuente de Color YELLOW" "$YELLOW"
-  Print_Style "Fuente de Color LIME_YELLOW" "$LIME_YELLOW"  
-  Print_Style "Fuente de Color BLUE" "$BLUE"
-  Print_Style "Fuente de Color MAGENTA" "$MAGENTA"
-  Print_Style "Fuente de Color CYAN" "$CYAN"
-  Print_Style "Fuente de Color WHITE" "$WHITE"
-  Print_Style "Fuente de Color BRIGHT" "$BRIGHT"
-  Print_Style "Fuente de Color NORMAL" "$NORMAL"  
-  Print_Style "Fuente de Color BLINK" "$BLINK"
-  Print_Style "Fuente de Color REVERSE" "$REVERSE"
-  Print_Style "Fuente de Color UNDERLINE" "$UNDERLINE"
-  sleep 2s
-
-
-echo "========================================================================="
-cd ~
-Print_Style "Descargando oh-my-posh" "$GREEN"
-sleep 2s
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-
-echo "========================================================================="
-Print_Style "Asignando permisos de ejecucion" "$YELLOW"
-sleep 2s
-cd ~
-sudo chmod +x /usr/local/bin/oh-my-posh
-#sudo chmod +x $DirName/bin/oh-my-posh
-
-
-echo "========================================================================="
-echo "======================= CONFIGURANDO TEMAS ================================="
-echo "========================================================================="
-sleep 2s
-Print_Style "Asignando permisos" "$BLUE"
-sleep 2s
-cd ~
-sudo mkdir ~/.poshthemes
-Print_Style "seleccionamos fuente FiraCode o Meslo" "$REVERSE"
-sudo oh-my-posh font install
-
-echo "========================================================================="
-Print_Style "Descargando Temas" "$MAGENTA"
-sleep 1s
-cd ~
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
-
-echo "========================================================================="
-Print_Style "Descomprimiendo" "$CYAN"
-sleep 2s
-sudo apt install unzip
-cd ~
-sudo unzip themes.zip -d ~/.poshthemes
-
-echo "========================================================================="
-Print_Style "Asignando permisos" "$RED"
-sleep 2s
-cd ~
-sudo chmod u+rw,g+r ~/.poshthemes/*.json
-
-echo "========================================================================="
-Print_Style "Eliminando archivo comprimido" "$GREEN"
-sleep 2s
-sudo rm -rf themes.zip
-
-echo "========================================================================="
-Print_Style "Migrar ubicacion de fuentes" "$CYAN"
-sleep 2s
-sudo oh-my-posh config migrate glyphs --write
-
-echo "========================================================================="
-echo "========================== ACTIVAR ======================================"
-echo "========================================================================="
-sleep 2s
-Print_Style "Creaar script de inicio para BASH" "$YELLOW"
-sleep 2s
-cd ~
-# sudo oh-my-posh init bash --config .poshthemes/jandedobbeleer.omp.json > .oh-my-post-init.sh
-
-echo "========================================================================="
-# Print_Style "Enlazar el script en .bashrc" "$BLUE"
-# sleep 2s
-# cd ~
-# sudo echo "source .oh-my-post-init.sh" >> .bashrc
-
-
-echo "========================================================================="
-# Print_Style "Inicializar el prompt con:" "$MAGENTA"
-# sleep 2s
-# source .oh-my-post-init.sh
-# sleep 4s
-# source .bashrc
-# Print_Style "source .bashrc" "$REVERSE"
-# Print_Style "source .oh-my-post-init.sh" "$REVERSE"
-
-sudo sed -i '$a eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"' .bashrc
-
-#  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# --- 0. AÑADIR .bashrc PARA QUE INICIE AUTOMATICAMENTE CUANDO INICIAMOS EN SSH ---
-# --- 0. AÑADIR .bashrc PARA QUE INICIE AUTOMATICAMENTE CUANDO INICIAMOS EN SSH ---
-
-# Limpiar la pantalla para una visualización clara
-#  clear
-
-# --- 1. DEFINICIÓN DE VARIABLES ---
-
-# Variable que contiene el código a añadir. Usamos un "here document" para manejar múltiples líneas fácilmente.
-read -r -d '' codigo_a_anadir <<'EOF'
-
-# Cargar .bashrc si existe para sesiones de login
-if [ -n "$BASH_VERSION" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
-fi
-EOF
-
-# Variables de estado (0 = no encontrado, 1 = encontrado)
-profile_has_code=0
-bash_profile_has_code=0
+# --- DEFINICIÓN DE COLORES Y FUNCIONES DE ESTILO (una sola vez) ---
+GREEN='\033[1;32m'
 BLUE='\033[1;34m'
-NC='\033[0m' # No Color
+YELLOW='\033[1;33m'
+RED='\033[1;31m'
+MAGENTA='\033[1;35m'
+CYAN='\033[1;36m'
+NC='\033[0m' # Sin Color
 
-# Función para imprimir con estilo
-Print_Style() {
-    echo -e "${2}${1}${NC}"
+# Función para imprimir texto con estilo
+print_style() {
+    echo -e "\n${2}${1}${NC}"
 }
 
-# --- 2. FASE DE VERIFICACIÓN ---
+# --- FUNCIONES MODULARES ---
 
-echo "========================================================================="
-Print_Style "Iniciando auditoría de archivos de perfil de Bash..." "$BLUE"
-echo "========================================================================="
-sleep 1
+# 1. INSTALACIÓN DE OH MY POSH
+install_oh_my_posh() {
+    print_style "=== Iniciando Instalación de Oh My Posh ===" "$GREEN"
 
-# Verificar ~/.profile
-if [ -f ~/.profile ] && grep -q '. "$HOME/.bashrc"' ~/.profile; then
-    profile_has_code=1
-    echo "✅ Encontrado: El código ya existe en ~/.profile."
-else
-    echo "❌ No encontrado: El código falta en ~/.profile."
-fi
+    print_style "Descargando binario de Oh My Posh..." "$YELLOW"
+    sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 
-# Verificar ~/.bash_profile
-if [ -f ~/.bash_profile ] && grep -q '. "$HOME/.bashrc"' ~/.bash_profile; then
-    bash_profile_has_code=1
-    echo "✅ Encontrado: El código ya existe en ~/.bash_profile."
-else
-    echo "❌ No encontrado: El código falta en ~/.bash_profile."
-fi
-echo "========================================================================="
-echo ""
+    print_style "Asignando permisos de ejecución..." "$YELLOW"
+    sudo chmod +x /usr/local/bin/oh-my-posh
 
+    print_style "Creando directorio para temas (sin sudo)..." "$CYAN"
+    mkdir -p ~/.poshthemes
 
-# --- 3. FASE DE DECISIÓN Y ACCIÓN ---
+    print_style "Descargando temas..." "$MAGENTA"
+    # Usamos curl para seguir redirecciones y -o para guardar en un archivo temporal
+    curl -L https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -o ~/themes.zip
 
-# Escenario 1: Ambos archivos ya están configurados correctamente.
-if [ $profile_has_code -eq 1 ] && [ $bash_profile_has_code -eq 1 ]; then
-    Print_Style "👍 ¡Excelente! Ambos archivos están configurados correctamente." "$BLUE"
-    exit 0
-fi
+    print_style "Descomprimiendo temas en ~/.poshthemes..." "$CYAN"
+    unzip -o ~/themes.zip -d ~/.poshthemes
+    chmod u+rw ~/.poshthemes/*.json
+    rm ~/themes.zip
+    
+    print_style "Instalando fuentes recomendadas (Nerd Fonts)..." "$GREEN"
+    oh-my-posh font install FiraCode
+    
+    print_style "Migrando glifos de configuración..." "$CYAN"
+    oh-my-posh config migrate glyphs --write
 
-# Escenario 2: El código falta en AMBOS archivos. Se agrega automáticamente.
-if [ $profile_has_code -eq 0 ] && [ $bash_profile_has_code -eq 0 ]; then
-    Print_Style "🔥 Atención: El código no se encontró en ninguno de los dos archivos." "$BLUE"
-    echo "Agregando la configuración a ~/.profile y ~/.bash_profile automáticamente..."
-    sleep 1
-    echo "$codigo_a_anadir" >> ~/.profile
-    echo "✅ Código añadido con éxito a ~/.profile"
-    echo "$codigo_a_anadir" >> ~/.bash_profile
-    echo "✅ Código añadido con éxito a ~/.bash_profile"
-    exit 0
-fi
+    print_style "✅ Oh My Posh instalado correctamente." "$GREEN"
+}
 
-# Escenario 3: El código falta en solo UNO de los archivos. Se ofrece un menú.
-Print_Style "👉 Se ha detectado una configuración incompleta. Elige una acción:" "$BLUE"
-PS3="Por favor, elige una opción: "
+# 2. SELECTOR DE TEMAS PARA .bashrc
+configure_omp_theme() {
+    print_style "=== Configurando Tema de Oh My Posh en .bashrc ===" "$GREEN"
 
-# Crear las opciones del menú dinámicamente
-options=()
-if [ $profile_has_code -eq 0 ]; then
-    options+=("Agregar código a ~/.profile")
-fi
-if [ $bash_profile_has_code -eq 0 ]; then
-    options+=("Agregar código a ~/.bash_profile")
-fi
-options+=("Salir sin hacer nada")
+    # Nombres y rutas de los temas
+    local nombre_tema1="Jandedobbeleer"
+    local config_tema1="~/.poshthemes/jandedobbeleer.omp.json"
+    local nombre_tema2="Atomic"
+    local config_tema2="~/.poshthemes/atomic.omp.json"
 
-select opt in "${options[@]}"; do
-    case $opt in
-        "Agregar código a ~/.profile")
-            echo "$codigo_a_anadir" >> ~/.profile
-            Print_Style "✅ ¡Hecho! El código ha sido añadido a ~/.profile." "$BLUE"
-            break
-            ;;
-        "Agregar código a ~/.bash_profile")
-            echo "$codigo_a_anadir" >> ~/.bash_profile
-            Print_Style "✅ ¡Hecho! El código ha sido añadido a ~/.bash_profile." "$BLUE"
-            break
-            ;;
-        "Salir sin hacer nada")
-            echo "No se han realizado cambios."
-            break
-            ;;
-        *) 
-            echo "Opción inválida: $REPLY. Por favor, intenta de nuevo."
-            ;;
-    esac
-done
+    echo "Elige el tema que deseas activar:"
+    PS3="👉 Por favor, elige una opción: "
+    options=("$nombre_tema1" "$nombre_tema2" "No cambiar")
+    select opt in "${options[@]}"; do
+        case $opt in
+            "$nombre_tema1")
+                local config_elegida="$config_tema1"
+                break
+                ;;
+            "$nombre_tema2")
+                local config_elegida="$config_tema2"
+                break
+                ;;
+            "No cambiar")
+                echo "No se han realizado cambios en .bashrc."
+                return
+                ;;
+            *) echo "Opción inválida $REPLY";;
+        esac
+    done
 
-echo ""
-echo "========================================================================="
-# --- 0. AÑADIR .bashrc PARA QUE INICIE AUTOMATICAMENTE CUANDO INICIAMOS EN SSH ---
-# --- 0. AÑADIR .bashrc PARA QUE INICIE AUTOMATICAMENTE CUANDO INICIAMOS EN SSH ---
+    if [ -n "$config_elegida" ]; then
+        print_style "Limpiando configuraciones antiguas de Oh My Posh en .bashrc..." "$YELLOW"
+        sed -i '/oh-my-posh --init --shell bash/d' ~/.bashrc
+        
+        local nueva_linea="eval \"\$(oh-my-posh --init --shell bash --config $config_elegida)\""
+        echo "$nueva_linea" >> ~/.bashrc
+        print_style "✅ Tema $(basename "$config_elegida") configurado en ~/.bashrc." "$GREEN"
+        echo "Para ver los cambios, reinicia tu terminal o ejecuta: source ~/.bashrc"
+    fi
+}
 
+# 3. CONFIGURACIÓN DE ZONA HORARIA
+configure_timezone() {
+    print_style "=== Configuración de Zona Horaria ===" "$GREEN"
+    sudo timedatectl
+    
+    read -p "¿Deseas cambiar la zona horaria? [y/N]: " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        echo "Ejemplos: America/Mexico_City, America/Bogota, Europe/Madrid"
+        read -p "Introduce la nueva zona horaria: " new_tz
+        if [ -n "$new_tz" ]; then
+            sudo timedatectl set-timezone "$new_tz"
+            print_style "Nueva zona horaria establecida:" "$GREEN"
+            sudo timedatectl
+        else
+            echo "No se introdujo ninguna zona horaria. No se realizaron cambios."
+        fi
+    fi
+}
 
-# --- Ejecución Principal ---
-
-# 1. Llama a la función que muestra la animación
-animacion_inicio
-
-# 2. Después de los 5 segundos, ejecuta el comando de Oh My Posh
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"
-
-
-
-
-# eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/atomic.omp.json)"
-eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/jandedobbeleer.omp.json)"
-
-echo "========================================================================="
-echo "========================================================================="
-sudo timedatectl
-echo "========================================================================="
-read -r -p "Sincronizar Zona Horaria? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-echo "========================================================================="
-Print_Style "Configurando Zona Horaria" "$MAGENTA"
-echo "========================================================================="
-echo "Voiendo Zona horaria actual del sistema"
-sudo timedatectl
-echo "========================================================================="
-sleep 5s
-Print_Style "Configurando Sincronizacion de Zona Horaria" "$BLUE"
-sleep 2s
-sudo apt install systemd-timesyncd
-Print_Style "Sincronizando Zona Horaria desde el Sistema" "$BLUE"
-sudo timedatectl set-ntp true
-    sleep 2s
-else
-    Print_Style "Zona Horaria Actual: $CYAN $TZ" "$NORMAL"
-fi
+# 4. INSTALACIÓN DE TIMESHIFT
+install_timeshift() {
+    print_style "=== Instalación de Timeshift ===" "$GREEN"
+    read -p "¿Deseas instalar Timeshift para copias de seguridad del sistema? [y/N]: " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        sudo add-apt-repository -y ppa:teejee2008/timeshift
+        sudo apt update
+        sudo apt install -y timeshift
+        print_style "✅ Timeshift instalado correctamente." "$GREEN"
+    else
+        echo "Instalación de Timeshift omitida."
+    fi
+}
 
 
+# --- FUNCIÓN PRINCIPAL QUE EJECUTA EL SCRIPT ---
+main() {
+    clear
+    print_style "=================================================" "$BLUE"
+    print_style "    SCRIPT DE INSTALACIÓN Y CONFIGURACIÓN      " "$BLUE"
+    print_style "=================================================" "$BLUE"
 
-echo "========================================================================="
-echo "========================================================================="
-sudo timedatectl
-echo "========================================================================="
-TZ=$(sudo cat /etc/timezone)
-Print_Style "Zona Horaria Actual: $CYAN $TZ" "$GREEN"
-echo "========================================================================="
+    # Verificar dependencias básicas
+    command -v wget >/dev/null 2>&1 || { echo >&2 "wget no está instalado. Abortando."; exit 1; }
+    command -v unzip >/dev/null 2>&1 || { sudo apt update && sudo apt install -y unzip; }
 
-read -r -p "Cambiar Zona Horaria? [y/N] " response
-if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-then
-    # Digitar Zona Horaria
-    echo "========================================================================="
-    Print_Style "Introduzca la Zona Horaria: " "$MAGENTA"
-    Print_Style "Ejemplos:" "$YELLOW"
-    Print_Style "America/Mexico_City" "$CYAN"
-    Print_Style "America/Bogota" "$CYAN"
-    read_with_prompt NewTZ "Introduzca Zona Horaria"
-    echo "========================================================================="
-    sleep 3s
-    sudo timedatectl set-timezone $NewTZ
-    # sudo timedatectl set-timezone America/Mexico_City
-    TZN=$(sudo cat /etc/timezone)
-    sleep 2s
-    # ln -sfn /usr/share/zoneinfo/$NewTZ /etc/localtime
-    Print_Style "Nueva Zona Horaria: $CYAN $TZN" "$NORMAL"
-    sleep 2s
-else
-    Print_Style "Zona Horaria Actual: $CYAN $TZ" "$NORMAL"
-fi
+    install_oh_my_posh
+    configure_omp_theme
+    configure_timezone
+    install_timeshift
 
-SistemaLin=$(lsb_release -i)
-var1="$SistemaLin"
-RecorLin=${var1#Distributor ID\:}
-LinuxSistemInstall=$(echo "$RecorLin" | tr -d '[[:space:]]' | awk '{print tolower($0)}')
+    print_style "🎉 ¡Proceso de configuración completado! 🎉" "$MAGENTA"
+}
 
-# Hacer instantaneas en linux
-# https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b
-sudo add-apt-repository -y ppa:teejee2008/timeshift
-sudo apt update
-sudo apt install timeshift -y
+# Ejecutar el script
+main
